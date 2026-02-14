@@ -1,0 +1,15 @@
+cloudru_project_id  = "<your_project_id>"
+cloudru_auth_key_id = "<your_cloudru_key_id>"
+cloudru_auth_secret = "<your_cloudru_key_secret>"
+
+ssh_allowed_cidr = "<your_ip>/32"
+ssh_public_key   = "ssh-ed25519 <your_public_key>"
+
+cluster_name         = "prod-k8s"
+control_plane_count  = 3
+worker_count         = 3
+
+control_plane_flavor_id = "<flavor_id_for_control_plane>"
+worker_flavor_id        = "<flavor_id_for_workers>"
+
+boot_disk_size = 60

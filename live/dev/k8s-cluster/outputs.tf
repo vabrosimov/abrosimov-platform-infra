@@ -1,16 +1,16 @@
-output "vm_id" {
-  value       = module.vm.id
-  description = "Created VM ID in dev k8s cluster stack."
+output "node_ids" {
+  value       = { for k, m in module.nodes : k => m.id }
+  description = "Created cluster node IDs."
 }
 
-output "vm_name" {
-  value       = module.vm.name
-  description = "Created VM name in dev k8s cluster stack."
+output "node_names" {
+  value       = { for k, m in module.nodes : k => m.name }
+  description = "Created cluster node names."
 }
 
-output "vm_state" {
-  value       = module.vm.state
-  description = "Created VM state in dev k8s cluster stack."
+output "node_states" {
+  value       = { for k, m in module.nodes : k => m.state }
+  description = "Created cluster node states."
 }
 
 output "subnet_id" {
@@ -20,12 +20,12 @@ output "subnet_id" {
 
 output "fip_id" {
   value       = module.network.fip_id
-  description = "Created floating IP ID."
+  description = "Created floating IP ID (attached to cp-01)."
 }
 
 output "fip_address" {
   value       = module.network.fip_address
-  description = "Created floating IP address."
+  description = "Created floating IP address (for first control-plane node)."
 }
 
 output "security_group_id" {

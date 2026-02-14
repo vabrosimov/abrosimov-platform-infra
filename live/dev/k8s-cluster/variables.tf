@@ -44,6 +44,12 @@ variable "cloudru_dbaas_endpoint" {
   default     = "dbaas.api.cloud.ru:443"
 }
 
+variable "cluster_name" {
+  type        = string
+  description = "Cluster name prefix for nodes."
+  default     = "dev-k8s"
+}
+
 variable "availability_zone_id" {
   type        = string
   description = "Availability zone ID."
@@ -66,6 +72,30 @@ variable "ssh_public_key" {
   description = "SSH public key for VM image block."
 }
 
+variable "control_plane_count" {
+  type        = number
+  description = "Number of control-plane nodes."
+  default     = 1
+}
+
+variable "worker_count" {
+  type        = number
+  description = "Number of worker nodes."
+  default     = 2
+}
+
+variable "control_plane_flavor_id" {
+  type        = string
+  description = "Flavor ID for control-plane nodes (CPU/RAM profile)."
+  default     = "22c9e630-2e31-4792-91d5-bc095386836d"
+}
+
+variable "worker_flavor_id" {
+  type        = string
+  description = "Flavor ID for worker nodes (CPU/RAM profile)."
+  default     = "22c9e630-2e31-4792-91d5-bc095386836d"
+}
+
 variable "subnet_name" {
   type        = string
   description = "Subnet name."
@@ -75,7 +105,7 @@ variable "subnet_name" {
 variable "subnet_description" {
   type        = string
   description = "Subnet description."
-  default     = "DEV subnet for k8s VM test"
+  default     = "DEV subnet for k8s nodes"
 }
 
 variable "subnet_address" {
@@ -99,7 +129,7 @@ variable "fip_name" {
 variable "fip_description" {
   type        = string
   description = "Floating IP description."
-  default     = "Floating IP for dev k8s VM"
+  default     = "Floating IP for first control-plane node"
 }
 
 variable "security_group_name" {
@@ -111,25 +141,7 @@ variable "security_group_name" {
 variable "security_group_description" {
   type        = string
   description = "Security group description."
-  default     = "Security group for dev k8s VM"
-}
-
-variable "vm_name" {
-  type        = string
-  description = "Compute VM name."
-  default     = "dev-k8s-vm-01"
-}
-
-variable "vm_description" {
-  type        = string
-  description = "Compute VM description."
-  default     = "DEV VM for k8s validation"
-}
-
-variable "flavor_id" {
-  type        = string
-  description = "Flavor ID."
-  default     = "22c9e630-2e31-4792-91d5-bc095386836d"
+  default     = "Security group for k8s nodes"
 }
 
 variable "image_name" {
@@ -138,28 +150,16 @@ variable "image_name" {
   default     = "ubuntu-22.04"
 }
 
-variable "host_name" {
-  type        = string
-  description = "Host name in image settings."
-  default     = "dev-k8s-host"
-}
-
 variable "user_name" {
   type        = string
   description = "User name in image settings."
-  default     = "dev-k8s-user"
-}
-
-variable "boot_disk_name" {
-  type        = string
-  description = "Boot disk name."
-  default     = "dev-k8s-disk"
+  default     = "k8s-user"
 }
 
 variable "boot_disk_size" {
   type        = number
   description = "Boot disk size GB."
-  default     = 10
+  default     = 20
 }
 
 variable "boot_disk_type_id" {

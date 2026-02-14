@@ -32,8 +32,11 @@ resource "cloudru_evolution_compute" "this" {
       id = var.security_group_id
     }
 
-    fip {
-      id = var.fip_id
+    dynamic "fip" {
+      for_each = var.fip_id == null ? [] : [var.fip_id]
+      content {
+        id = fip.value
+      }
     }
   }
 }

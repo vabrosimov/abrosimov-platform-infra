@@ -66,4 +66,5 @@ variable "security_group_id" {
 variable "fip_id" {
   type        = string
   description = "Floating IP ID for interface."
+  default     = null
 }

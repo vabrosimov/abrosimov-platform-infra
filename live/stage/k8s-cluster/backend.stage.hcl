@@ -1,5 +1,5 @@
 bucket  = "abrosimov-platform-infra-tfstate-dev"
-key     = "live/dev/k8s-cluster/terraform.tfstate"
+key     = "live/stage/k8s-cluster/terraform.tfstate"
 region  = "ru-central-1"
 encrypt = false
 
