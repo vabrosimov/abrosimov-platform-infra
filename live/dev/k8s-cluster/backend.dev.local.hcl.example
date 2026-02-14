@@ -1,0 +1,3 @@
+# Copy this file to backend.dev.local.hcl and fill real secrets.
+access_key = "<set_storage_access_key>"
+secret_key = "<set_storage_secret_key>"
