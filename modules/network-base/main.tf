@@ -25,7 +25,7 @@ resource "cloudru_evolution_nat_gateway" "this" {
   count       = var.enable_snat_gateway ? 1 : 0
   name        = var.snat_gateway_name
   description = var.snat_gateway_description
-  nat_type    = "snat"
+  nat_type    = "Public sNAT"
 
   availability_zone {
     id = var.availability_zone_id
