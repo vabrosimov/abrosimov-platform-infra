@@ -26,7 +26,7 @@ remote_state {
   }
 
   config = {
-    bucket  = "abrosimov-platform-infra-tfstate-dev"
+    bucket  = "abrosimov-platform-infra-tfstate-${local.environment}"
     key     = "live/${local.relative_path}/terraform.tfstate"
     region  = "ru-central-1"
     encrypt = false
