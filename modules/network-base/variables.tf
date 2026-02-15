@@ -40,6 +40,24 @@ variable "fip_description" {
   description = "Floating IP description."
 }
 
+variable "enable_snat_gateway" {
+  type        = bool
+  description = "Create SNAT gateway for private subnet egress."
+  default     = false
+}
+
+variable "snat_gateway_name" {
+  type        = string
+  description = "SNAT gateway name."
+  default     = "snat-gateway"
+}
+
+variable "snat_gateway_description" {
+  type        = string
+  description = "SNAT gateway description."
+  default     = "SNAT gateway"
+}
+
 variable "availability_zone_id" {
   type        = string
   description = "Availability zone ID (for example AZ1 ID)."

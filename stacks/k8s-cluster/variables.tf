@@ -132,6 +132,24 @@ variable "fip_description" {
   default     = "Floating IP for first control-plane node"
 }
 
+variable "enable_snat_gateway" {
+  type        = bool
+  description = "Enable SNAT gateway for private subnet egress."
+  default     = false
+}
+
+variable "snat_gateway_name" {
+  type        = string
+  description = "SNAT gateway name."
+  default     = "dev-k8s-snat"
+}
+
+variable "snat_gateway_description" {
+  type        = string
+  description = "SNAT gateway description."
+  default     = "SNAT gateway for k8s subnet egress"
+}
+
 variable "security_group_name" {
   type        = string
   description = "Security group name."

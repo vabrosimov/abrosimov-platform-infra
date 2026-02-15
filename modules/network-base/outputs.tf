@@ -17,3 +17,8 @@ output "fip_address" {
   value       = cloudru_evolution_fip.this.ip_address
   description = "Floating IP address."
 }
+
+output "snat_gateway_id" {
+  value       = try(cloudru_evolution_nat_gateway.this[0].id, null)
+  description = "SNAT gateway ID."
+}

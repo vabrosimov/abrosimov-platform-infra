@@ -28,6 +28,11 @@ output "fip_address" {
   description = "Created floating IP address (for first control-plane node)."
 }
 
+output "snat_gateway_id" {
+  value       = module.network.snat_gateway_id
+  description = "SNAT gateway ID."
+}
+
 output "security_group_id" {
   value       = module.security.id
   description = "Created security group ID."

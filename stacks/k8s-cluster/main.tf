@@ -56,16 +56,19 @@ module "security" {
 module "network" {
   source = "../../modules/network-base"
 
-  project_id           = var.cloudru_project_id
-  subnet_name          = var.subnet_name
-  subnet_description   = var.subnet_description
-  subnet_address       = var.subnet_address
-  default_gateway      = var.default_gateway
-  routed_network       = true
-  dns_servers          = ["8.8.8.8"]
-  fip_name             = var.fip_name
-  fip_description      = var.fip_description
-  availability_zone_id = var.availability_zone_id
+  project_id               = var.cloudru_project_id
+  subnet_name              = var.subnet_name
+  subnet_description       = var.subnet_description
+  subnet_address           = var.subnet_address
+  default_gateway          = var.default_gateway
+  routed_network           = true
+  dns_servers              = ["8.8.8.8"]
+  fip_name                 = var.fip_name
+  fip_description          = var.fip_description
+  enable_snat_gateway      = var.enable_snat_gateway
+  snat_gateway_name        = var.snat_gateway_name
+  snat_gateway_description = var.snat_gateway_description
+  availability_zone_id     = var.availability_zone_id
 }
 
 module "nodes" {

@@ -13,3 +13,7 @@ control_plane_flavor_id = "<flavor_id_for_control_plane>"
 worker_flavor_id        = "<flavor_id_for_workers>"
 
 boot_disk_size = 60
+
+enable_snat_gateway     = false
+snat_gateway_name       = "<snat_gateway_name>"
+snat_gateway_description = "<snat_gateway_description>"
