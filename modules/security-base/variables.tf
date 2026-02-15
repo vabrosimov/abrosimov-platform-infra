@@ -13,6 +13,11 @@ variable "availability_zone_id" {
   description = "Availability zone ID (for example AZ1 ID)."
 }
 
+variable "project_id" {
+  type        = string
+  description = "Cloud.ru project ID."
+}
+
 variable "rules" {
   type = list(object({
     direction        = string

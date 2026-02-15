@@ -1,4 +1,5 @@
 resource "cloudru_evolution_security_group" "this" {
+  project_id  = var.project_id
   name        = var.name
   description = var.description
 

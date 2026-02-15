@@ -44,3 +44,8 @@ variable "availability_zone_id" {
   type        = string
   description = "Availability zone ID (for example AZ1 ID)."
 }
+
+variable "project_id" {
+  type        = string
+  description = "Cloud.ru project ID."
+}

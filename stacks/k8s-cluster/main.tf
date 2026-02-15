@@ -21,8 +21,9 @@ locals {
 }
 
 module "security" {
-  source = "../../../modules/security-base"
+  source = "../../modules/security-base"
 
+  project_id           = var.cloudru_project_id
   name                 = var.security_group_name
   description          = var.security_group_description
   availability_zone_id = var.availability_zone_id
@@ -53,8 +54,9 @@ module "security" {
 }
 
 module "network" {
-  source = "../../../modules/network-base"
+  source = "../../modules/network-base"
 
+  project_id           = var.cloudru_project_id
   subnet_name          = var.subnet_name
   subnet_description   = var.subnet_description
   subnet_address       = var.subnet_address
@@ -68,7 +70,7 @@ module "network" {
 
 module "nodes" {
   for_each = local.cluster_nodes
-  source   = "../../../modules/vm-base"
+  source   = "../../modules/vm-base"
 
   name                   = "${var.cluster_name}-${each.key}"
   description            = "${var.cluster_name} ${each.value.role} node"
