@@ -13,6 +13,11 @@ output "node_states" {
   description = "Created cluster node states."
 }
 
+output "network_id" {
+  value       = module.network.network_id
+  description = "Created VPC network ID."
+}
+
 output "subnet_id" {
   value       = module.network.subnet_id
   description = "Created subnet ID."
@@ -20,12 +25,12 @@ output "subnet_id" {
 
 output "fip_id" {
   value       = module.network.fip_id
-  description = "Created floating IP ID (attached to cp-01)."
+  description = "Created static public IP ID (attached to cp-01)."
 }
 
 output "fip_address" {
   value       = module.network.fip_address
-  description = "Created floating IP address (for first control-plane node)."
+  description = "Created static public IP address (for first control-plane node)."
 }
 
 output "snat_gateway_id" {

@@ -1,42 +1,39 @@
-resource "cloudru_evolution_compute" "this" {
+resource "yandex_compute_instance" "this" {
   name        = var.name
-  flavor_id   = var.flavor_id
+  hostname    = var.host_name
   description = var.description
+  zone        = var.availability_zone_name
+  platform_id = var.platform_id
 
-  availability_zone {
-    name = var.availability_zone_name
+  resources {
+    core_fraction = var.core_fraction
+    cores         = var.cores
+    memory        = var.memory
   }
 
-  image {
-    name       = var.image_name
-    host_name  = var.host_name
-    user_name  = var.user_name
-    public_key = var.public_key
+  scheduling_policy {
+    preemptible = false
   }
 
   boot_disk {
-    name = var.boot_disk_name
-    size = var.boot_disk_size
+    auto_delete = true
 
-    disk_type {
-      id = var.boot_disk_type_id
+    initialize_params {
+      name     = var.boot_disk_name
+      image_id = var.image_id
+      size     = var.boot_disk_size
+      type     = var.boot_disk_type
     }
   }
 
-  network_interfaces {
-    subnet {
-      name = var.subnet_name
-    }
+  network_interface {
+    subnet_id          = var.subnet_id
+    security_group_ids = var.security_group_ids
+    nat                = var.nat_ip_address != null
+    nat_ip_address     = var.nat_ip_address
+  }
 
-    security_groups {
-      id = var.security_group_id
-    }
-
-    dynamic "fip" {
-      for_each = var.fip_id == null ? [] : [var.fip_id]
-      content {
-        id = fip.value
-      }
-    }
+  metadata = {
+    ssh-keys = "${var.user_name}:${var.public_key}"
   }
 }

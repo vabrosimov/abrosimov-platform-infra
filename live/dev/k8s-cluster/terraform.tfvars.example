@@ -1,21 +1,37 @@
-cloudru_project_id  = "<your_project_id>"
-cloudru_auth_key_id = "<your_cloudru_key_id>"
-cloudru_auth_secret = "<your_cloudru_key_secret>"
+yandex_cloud_id                 = "<your_yandex_cloud_id>"
+yandex_folder_id                = "<your_yandex_folder_id>"
+yandex_service_account_key_file = "<absolute_path_to_sa_key_json>"
+
+cluster_name           = "dev-k8s"
+availability_zone_name = "ru-central1-a"
 
 ssh_allowed_cidr = "<your_ip>/32"
 ssh_public_key   = "ssh-ed25519 <your_public_key>"
 
-cluster_name         = "dev-k8s"
-control_plane_count  = 1
-worker_count         = 2
+control_plane_count = 1
+worker_count        = 2
 
-# Set flavor IDs to required CPU/RAM profiles.
-# Example placeholders:
-control_plane_flavor_id = "<flavor_id_for_control_plane>"
-worker_flavor_id        = "<flavor_id_for_workers>"
+platform_id          = "standard-v3"
+control_plane_cores  = 2
+control_plane_memory = 4
+worker_cores         = 2
+worker_memory        = 4
+
+network_name       = "dev-k8s-network"
+subnet_name        = "dev-k8s-subnet"
+subnet_description = "DEV subnet for k8s nodes"
+subnet_address     = "10.10.2.0/24"
+fip_name           = "dev-k8s-fip"
+
+security_group_name        = "dev-k8s-sg"
+security_group_description = "Security group for k8s nodes"
+
+image_family = "ubuntu-2204-lts"
+user_name    = "k8s-user"
 
 boot_disk_size = 20
+boot_disk_type = "network-ssd"
 
-enable_snat_gateway     = false
-snat_gateway_name       = "<snat_gateway_name>"
-snat_gateway_description = "<snat_gateway_description>"
+enable_snat_gateway   = false
+snat_gateway_name     = "dev-k8s-snat"
+snat_route_table_name = "dev-k8s-snat-rt"

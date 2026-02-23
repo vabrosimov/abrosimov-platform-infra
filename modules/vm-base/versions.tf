@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    cloudru = {
-      source  = "cloud.ru/cloudru/cloud"
-      version = "1.6.0"
+    yandex = {
+      source  = "yandex-cloud/yandex"
+      version = "~> 0.142"
     }
   }
 }

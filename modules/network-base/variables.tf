@@ -1,3 +1,8 @@
+variable "network_name" {
+  type        = string
+  description = "VPC network name."
+}
+
 variable "subnet_name" {
   type        = string
   description = "Subnet name."
@@ -13,36 +18,19 @@ variable "subnet_address" {
   description = "Subnet CIDR."
 }
 
-variable "default_gateway" {
+variable "availability_zone_name" {
   type        = string
-  description = "Subnet default gateway."
-}
-
-variable "dns_servers" {
-  type        = list(string)
-  description = "DNS servers for subnet."
-  default     = ["8.8.8.8"]
-}
-
-variable "routed_network" {
-  type        = bool
-  description = "Whether subnet is routed."
-  default     = true
+  description = "Availability zone name (for example ru-central1-a)."
 }
 
 variable "fip_name" {
   type        = string
-  description = "Floating IP name."
-}
-
-variable "fip_description" {
-  type        = string
-  description = "Floating IP description."
+  description = "Static public IP name."
 }
 
 variable "enable_snat_gateway" {
   type        = bool
-  description = "Create SNAT gateway for private subnet egress."
+  description = "Create SNAT gateway and route table for private egress."
   default     = false
 }
 
@@ -52,18 +40,8 @@ variable "snat_gateway_name" {
   default     = "snat-gateway"
 }
 
-variable "snat_gateway_description" {
+variable "snat_route_table_name" {
   type        = string
-  description = "SNAT gateway description."
-  default     = "SNAT gateway"
-}
-
-variable "availability_zone_id" {
-  type        = string
-  description = "Availability zone ID (for example AZ1 ID)."
-}
-
-variable "project_id" {
-  type        = string
-  description = "Cloud.ru project ID."
+  description = "Route table name for SNAT default route."
+  default     = "snat-route-table"
 }

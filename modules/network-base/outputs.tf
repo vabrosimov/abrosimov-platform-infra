@@ -1,24 +1,29 @@
+output "network_id" {
+  value       = yandex_vpc_network.this.id
+  description = "VPC network ID."
+}
+
 output "subnet_id" {
-  value       = cloudru_evolution_subnet.this.id
+  value       = yandex_vpc_subnet.this.id
   description = "Subnet ID."
 }
 
 output "subnet_name" {
-  value       = cloudru_evolution_subnet.this.name
+  value       = yandex_vpc_subnet.this.name
   description = "Subnet name."
 }
 
 output "fip_id" {
-  value       = cloudru_evolution_fip.this.id
-  description = "Floating IP ID."
+  value       = yandex_vpc_address.this.id
+  description = "Static public IP ID."
 }
 
 output "fip_address" {
-  value       = cloudru_evolution_fip.this.ip_address
-  description = "Floating IP address."
+  value       = yandex_vpc_address.this.external_ipv4_address[0].address
+  description = "Static public IP address."
 }
 
 output "snat_gateway_id" {
-  value       = try(cloudru_evolution_nat_gateway.this[0].id, null)
+  value       = try(yandex_vpc_gateway.snat[0].id, null)
   description = "SNAT gateway ID."
 }

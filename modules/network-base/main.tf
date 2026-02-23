@@ -1,33 +1,38 @@
-resource "cloudru_evolution_subnet" "this" {
-  project_id      = var.project_id
-  name            = var.subnet_name
-  description     = var.subnet_description
-  subnet_address  = var.subnet_address
-  default_gateway = var.default_gateway
-  routed_network  = var.routed_network
-  dns_servers     = var.dns_servers
+resource "yandex_vpc_network" "this" {
+  name = var.network_name
+}
 
-  availability_zone {
-    id = var.availability_zone_id
+resource "yandex_vpc_gateway" "snat" {
+  count = var.enable_snat_gateway ? 1 : 0
+  name  = var.snat_gateway_name
+
+  shared_egress_gateway {}
+}
+
+resource "yandex_vpc_route_table" "snat" {
+  count      = var.enable_snat_gateway ? 1 : 0
+  name       = var.snat_route_table_name
+  network_id = yandex_vpc_network.this.id
+
+  static_route {
+    destination_prefix = "0.0.0.0/0"
+    gateway_id         = yandex_vpc_gateway.snat[0].id
   }
 }
 
-resource "cloudru_evolution_fip" "this" {
-  name        = var.fip_name
-  description = var.fip_description
-
-  availability_zone {
-    id = var.availability_zone_id
-  }
+resource "yandex_vpc_subnet" "this" {
+  name           = var.subnet_name
+  description    = var.subnet_description
+  zone           = var.availability_zone_name
+  network_id     = yandex_vpc_network.this.id
+  v4_cidr_blocks = [var.subnet_address]
+  route_table_id = var.enable_snat_gateway ? yandex_vpc_route_table.snat[0].id : null
 }
 
-resource "cloudru_evolution_nat_gateway" "this" {
-  count       = var.enable_snat_gateway ? 1 : 0
-  name        = var.snat_gateway_name
-  description = var.snat_gateway_description
-  nat_type    = "Public sNAT"
+resource "yandex_vpc_address" "this" {
+  name = var.fip_name
 
-  availability_zone {
-    id = var.availability_zone_id
+  external_ipv4_address {
+    zone_id = var.availability_zone_name
   }
 }

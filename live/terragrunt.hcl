@@ -28,11 +28,11 @@ remote_state {
   config = {
     bucket  = "abrosimov-platform-infra-tfstate-${local.environment}"
     key     = "live/${local.relative_path}/terraform.tfstate"
-    region  = "ru-central-1"
+    region  = "ru-central1"
     encrypt = false
 
     endpoints = {
-      s3 = "https://s3.cloud.ru"
+      s3 = "https://storage.yandexcloud.net"
     }
 
     skip_credentials_validation = true

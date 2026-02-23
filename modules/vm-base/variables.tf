@@ -8,29 +8,46 @@ variable "description" {
   description = "Compute instance description."
 }
 
-variable "flavor_id" {
+variable "platform_id" {
   type        = string
-  description = "Flavor ID."
+  description = "YC platform ID (for example standard-v3)."
+  default     = "standard-v3"
+}
+
+variable "cores" {
+  type        = number
+  description = "vCPU count."
+}
+
+variable "memory" {
+  type        = number
+  description = "RAM size in GB."
+}
+
+variable "core_fraction" {
+  type        = number
+  description = "Guaranteed vCPU share percent."
+  default     = 100
 }
 
 variable "availability_zone_name" {
   type        = string
-  description = "Availability zone name (for example ru.AZ-1)."
+  description = "Availability zone name (for example ru-central1-a)."
 }
 
-variable "image_name" {
+variable "image_id" {
   type        = string
-  description = "Image name (for example ubuntu-22.04)."
+  description = "YC image ID for boot disk initialization."
 }
 
 variable "host_name" {
   type        = string
-  description = "Host name inside image block."
+  description = "Host name."
 }
 
 variable "user_name" {
   type        = string
-  description = "User name inside image block."
+  description = "Linux username for SSH access."
 }
 
 variable "public_key" {
@@ -48,23 +65,24 @@ variable "boot_disk_size" {
   description = "Boot disk size in GB."
 }
 
-variable "boot_disk_type_id" {
+variable "boot_disk_type" {
   type        = string
-  description = "Boot disk type ID."
+  description = "YC boot disk type (for example network-ssd)."
+  default     = "network-ssd"
 }
 
-variable "subnet_name" {
+variable "subnet_id" {
   type        = string
-  description = "Subnet name to attach interface."
+  description = "Subnet ID to attach NIC."
 }
 
-variable "security_group_id" {
-  type        = string
-  description = "Security group ID for interface."
+variable "security_group_ids" {
+  type        = list(string)
+  description = "Security group IDs for NIC."
 }
 
-variable "fip_id" {
+variable "nat_ip_address" {
   type        = string
-  description = "Floating IP ID for interface."
+  description = "Static public IP for NIC NAT."
   default     = null
 }
