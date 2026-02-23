@@ -86,3 +86,9 @@ variable "nat_ip_address" {
   description = "Static public IP for NIC NAT."
   default     = null
 }
+
+variable "user_data" {
+  type        = string
+  description = "Optional cloud-init user-data."
+  default     = null
+}

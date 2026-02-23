@@ -33,7 +33,10 @@ resource "yandex_compute_instance" "this" {
     nat_ip_address     = var.nat_ip_address
   }
 
-  metadata = {
-    ssh-keys = "${var.user_name}:${var.public_key}"
-  }
+  metadata = merge(
+    {
+      ssh-keys = "${var.user_name}:${var.public_key}"
+    },
+    var.user_data == null ? {} : { user-data = var.user_data }
+  )
 }

@@ -42,3 +42,8 @@ output "security_group_id" {
   value       = module.security.id
   description = "Created security group ID."
 }
+
+output "vpn_public_ip" {
+  value       = try(yandex_vpc_address.vpn[0].external_ipv4_address[0].address, null)
+  description = "VPN gateway public IP address."
+}

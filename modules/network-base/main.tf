@@ -30,7 +30,8 @@ resource "yandex_vpc_subnet" "this" {
 }
 
 resource "yandex_vpc_address" "this" {
-  name = var.fip_name
+  count = var.enable_public_fip ? 1 : 0
+  name  = var.fip_name
 
   external_ipv4_address {
     zone_id = var.availability_zone_name

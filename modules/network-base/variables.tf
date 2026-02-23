@@ -28,6 +28,12 @@ variable "fip_name" {
   description = "Static public IP name."
 }
 
+variable "enable_public_fip" {
+  type        = bool
+  description = "Create public static IP for control-plane node."
+  default     = true
+}
+
 variable "enable_snat_gateway" {
   type        = bool
   description = "Create SNAT gateway and route table for private egress."

@@ -137,3 +137,69 @@ variable "boot_disk_type" {
   type        = string
   description = "Boot disk type."
 }
+
+variable "enable_vpn_gateway" {
+  type        = bool
+  description = "Enable dedicated VPN gateway VM (WireGuard)."
+}
+
+variable "vpn_gateway_name" {
+  type        = string
+  description = "VPN gateway VM name."
+}
+
+variable "vpn_gateway_cores" {
+  type        = number
+  description = "vCPU count for VPN gateway."
+}
+
+variable "vpn_gateway_memory" {
+  type        = number
+  description = "RAM (GB) for VPN gateway."
+}
+
+variable "vpn_gateway_boot_disk_size" {
+  type        = number
+  description = "Boot disk size (GB) for VPN gateway."
+}
+
+variable "vpn_fip_name" {
+  type        = string
+  description = "Static public IP name for VPN gateway."
+}
+
+variable "vpn_security_group_name" {
+  type        = string
+  description = "Security group name for VPN gateway."
+}
+
+variable "vpn_security_group_description" {
+  type        = string
+  description = "Security group description for VPN gateway."
+}
+
+variable "vpn_port" {
+  type        = number
+  description = "WireGuard UDP port."
+}
+
+variable "vpn_server_address" {
+  type        = string
+  description = "WireGuard server address with CIDR (for example 10.66.0.1/24)."
+}
+
+variable "vpn_client_address" {
+  type        = string
+  description = "WireGuard client address with CIDR (for example 10.66.0.2/32)."
+}
+
+variable "vpn_server_private_key" {
+  type        = string
+  description = "WireGuard server private key (base64 from wg genkey)."
+  sensitive   = true
+}
+
+variable "vpn_client_public_key" {
+  type        = string
+  description = "WireGuard client public key (base64 from wg pubkey)."
+}

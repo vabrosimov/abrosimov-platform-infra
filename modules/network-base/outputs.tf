@@ -14,12 +14,12 @@ output "subnet_name" {
 }
 
 output "fip_id" {
-  value       = yandex_vpc_address.this.id
+  value       = try(yandex_vpc_address.this[0].id, null)
   description = "Static public IP ID."
 }
 
 output "fip_address" {
-  value       = yandex_vpc_address.this.external_ipv4_address[0].address
+  value       = try(yandex_vpc_address.this[0].external_ipv4_address[0].address, null)
   description = "Static public IP address."
 }
 

@@ -27,7 +27,7 @@ security_group_name        = "dev-k8s-sg"
 security_group_description = "Security group for k8s nodes"
 
 image_family = "ubuntu-2204-lts"
-user_name    = "k8s-user"
+user_name    = "ubuntu"
 
 boot_disk_size = 20
 boot_disk_type = "network-ssd"
@@ -35,3 +35,17 @@ boot_disk_type = "network-ssd"
 enable_snat_gateway   = false
 snat_gateway_name     = "dev-k8s-snat"
 snat_route_table_name = "dev-k8s-snat-rt"
+
+enable_vpn_gateway             = true
+vpn_gateway_name               = "dev-k8s-vpn"
+vpn_gateway_cores              = 2
+vpn_gateway_memory             = 2
+vpn_gateway_boot_disk_size     = 20
+vpn_fip_name                   = "dev-k8s-vpn-fip"
+vpn_security_group_name        = "dev-k8s-vpn-sg"
+vpn_security_group_description = "Security group for WireGuard VPN gateway"
+vpn_port                       = 51820
+vpn_server_address             = "10.66.0.1/24"
+vpn_client_address             = "10.66.0.2/32"
+vpn_server_private_key         = "<wireguard_server_private_key_base64>"
+vpn_client_public_key          = "<wireguard_client_public_key_base64>"
